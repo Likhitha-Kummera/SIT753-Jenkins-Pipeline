@@ -2,16 +2,16 @@ pipeline {
     agent any
 
     environment {
-        DIRECTORY_PATH = "${WORKSPACE}"
-        TESTING_ENVIRONMENT = "Testing"
-        PRODUCTION_ENVIRONMENT = "Likhitha Kummera"
+        DIRECTORY_PATH = 'SIT753-Jenkins-Pipeline'
+        TESTING_ENVIRONMENT = 'Testing'
+        PRODUCTION_ENVIRONMENT = 'Likhitha Kummera'
     }
 
     stages {
 
         stage('Build') {
             steps {
-                echo "Fetch the source code from the directory path specified by the environment variable"
+                echo "Fetch the source code from the directory path specified by the environment variable: ${DIRECTORY_PATH}"
                 echo "Compile the code and generate any necessary artefacts"
             }
         }
@@ -31,13 +31,13 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo "Deploy the application to a testing environment specified by the environment variable"
+                echo "Deploy the application to a testing environment specified by the environment variable: ${TESTING_ENVIRONMENT}"
             }
         }
 
         stage('Approval') {
             steps {
-                echo "Waiting for manual approval..."
+                echo "Waiting for manual approval simulation..."
                 sleep 10
                 echo "Approval completed"
             }
@@ -45,7 +45,7 @@ pipeline {
 
         stage('Deploy to Production') {
             steps {
-                echo "Deploy the code to the production environment: ${PRODUCTION_ENVIRONMENT}"
+                echo "Deploying the code to the production environment: ${PRODUCTION_ENVIRONMENT}"
             }
         }
     }
